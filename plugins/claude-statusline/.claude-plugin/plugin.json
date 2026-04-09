@@ -1,0 +1,9 @@
+{
+  "name": "claude-statusline",
+  "description": "Build and customize the Claude Code status line and session banner",
+  "version": "1.0.0",
+  "author": { "name": "Huiyan Wan" },
+  "repository": "https://github.com/wan-huiyan/claude-statusline",
+  "license": "MIT",
+  "keywords": ["claude-code", "statusline", "terminal-ui", "session-banner", "developer-tools"]
+}

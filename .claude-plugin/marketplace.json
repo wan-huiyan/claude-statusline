@@ -1,0 +1,12 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "wan-huiyan-claude-statusline",
+  "description": "Build and customize the Claude Code status line and session banner",
+  "owner": { "name": "Huiyan Wan" },
+  "plugins": [{
+    "name": "claude-statusline",
+    "source": "./plugins/claude-statusline",
+    "description": "Build and customize the Claude Code status line and session banner",
+    "version": "1.0.0"
+  }]
+}
