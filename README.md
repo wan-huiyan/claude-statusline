@@ -40,8 +40,8 @@ git clone https://github.com/wan-huiyan/claude-statusline.git ~/.claude/skills/c
 | Session Label | `📝 fix auth token refresh` |
 | Git Branch | `⎇ feature/new-api` |
 | Git Dirty | `● 3 changed +2 new` |
-| Model Info | `Opus 4.6 [high]` |
-| Reasoning Effort | `reasoning:85%` |
+| Model Info | `Opus 4.6` |
+| Effort Level | `[medium]` |
 | Cost | `$0.4231` |
 | Duration | `12m34s` |
 | Lines Changed | `+142/-37 lines` |
@@ -111,6 +111,7 @@ The skill teaches Claude how to:
 
 ## Version History
 
+- **v1.1.0** (2026-04-10) — Fix effort level: read from `settings.json` `effortLevel` instead of hardcoding by model name
 - **v1.0.0** (2026-04-09) — Initial release: 14 modules, session banner, `grep -c` pitfall fix, complete JSON field reference
 
 ## License

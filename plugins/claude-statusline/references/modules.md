@@ -101,7 +101,7 @@ fi
 
 ## Model Info
 
-Shows model name, version number, and effort tier (color-coded).
+Shows model name and version number.
 
 **Parse:**
 ```bash
@@ -112,41 +112,35 @@ MODEL_NAME=$(echo "$input" | jq -r '.model.display_name // "Claude"')
 **Display:**
 ```bash
 MODEL_SHORT="$MODEL_NAME"
-EFFORT=""; EFFORT_CLR="$W"
-if echo "$MODEL_ID" | grep -qi "opus";   then MODEL_SHORT="Opus";   EFFORT="high";   EFFORT_CLR="$R"; fi
-if echo "$MODEL_ID" | grep -qi "sonnet"; then MODEL_SHORT="Sonnet"; EFFORT="med";    EFFORT_CLR="$Y"; fi
-if echo "$MODEL_ID" | grep -qi "haiku";  then MODEL_SHORT="Haiku";  EFFORT="low";    EFFORT_CLR="$G"; fi
+if echo "$MODEL_ID" | grep -qi "opus";   then MODEL_SHORT="Opus";   fi
+if echo "$MODEL_ID" | grep -qi "sonnet"; then MODEL_SHORT="Sonnet"; fi
+if echo "$MODEL_ID" | grep -qi "haiku";  then MODEL_SHORT="Haiku";  fi
 VER=$(echo "$MODEL_ID" | grep -oE '[0-9]+[-._][0-9]+' | head -1 | tr '-' '.')
 [ -n "$VER" ] && MODEL_LABEL="${MODEL_SHORT} ${VER}" || MODEL_LABEL="$MODEL_SHORT"
 
 MODEL_OUT="${BLD}${MODEL_LABEL}${RST}"
-[ -n "$EFFORT" ] && MODEL_OUT="${MODEL_OUT} ${EFFORT_CLR}[${EFFORT}]${RST}"
 ```
 
 ---
 
-## Reasoning Effort
+## Effort Level
 
-Reads the reasoning effort level from a local file (set by user or tools).
+Reads the effort level from `~/.claude/settings.json` (`effortLevel` key: low/medium/high).
+This is the authoritative source — do NOT hardcode effort based on model name.
 
 **Display:**
 ```bash
-REASONING_EFFORT=""
-RE_FILE="${HOME}/.claude/reasoning-effort"
-if [ -f "$RE_FILE" ]; then
-    RE_VAL=$(cat "$RE_FILE" 2>/dev/null | tr -d '[:space:]')
-    if echo "$RE_VAL" | grep -qE '^[0-9]+$'; then
-        REASONING_EFFORT="$RE_VAL"
-    fi
-fi
+EFFORT_LEVEL=$(jq -r '.effortLevel // ""' "${HOME}/.claude/settings.json" 2>/dev/null | tr -d '[:space:]')
+
 RE_CLR="$W"
-if [ -n "$REASONING_EFFORT" ] 2>/dev/null; then
-    if   [ "$REASONING_EFFORT" -ge 80 ] 2>/dev/null; then RE_CLR="$R"
-    elif [ "$REASONING_EFFORT" -ge 40 ] 2>/dev/null; then RE_CLR="$Y"
-    else                                                    RE_CLR="$G"
-    fi
-    RE_LABEL="${RE_CLR}reasoning:${REASONING_EFFORT}%${RST}"
-fi
+case "$EFFORT_LEVEL" in
+    low)    RE_CLR="$G" ;;
+    medium) RE_CLR="$Y" ;;
+    high)   RE_CLR="$R" ;;
+esac
+
+EFFORT_LABEL=""
+[ -n "$EFFORT_LEVEL" ] && EFFORT_LABEL="${RE_CLR}[${EFFORT_LEVEL}]${RST}"
 ```
 
 ---

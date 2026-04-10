@@ -48,8 +48,8 @@ bash snippet. Pick the ones you want, arrange them into rows, done.
 | **Session Label** | Auto-derived conversation name: explicit name > latest commit > branch > project dir | `📝 fix auth token refresh` |
 | **Git Branch** | Branch name, worktree indicator, detached state | `⎇ feature/new-api` or `⎇ wt:review (main)` |
 | **Git Dirty** | Changed + untracked file counts | `● 3 changed +2 new` or `✓ 0 changed` |
-| **Model Info** | Model name, version, effort tier color-coded | `Opus 4.6 [high]` |
-| **Reasoning Effort** | Custom reasoning effort level from `~/.claude/reasoning-effort` | `reasoning:85%` (red/yellow/green) |
+| **Model Info** | Model name and version | `Opus 4.6` |
+| **Effort Level** | Effort level from `~/.claude/settings.json` `effortLevel` key (low/medium/high) | `[medium]` (green/yellow/red) |
 | **Cost** | Session cost in USD | `$0.4231` |
 | **Duration** | Total API wall-clock time | `12m34s` |
 | **Lines Changed** | Lines added/removed this session | `+142/-37 lines` |
