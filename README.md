@@ -20,15 +20,26 @@ Claude: [generates a 5-line script with single printf output]
 
 ## Installation
 
-**Claude Code (plugin):**
+**Claude Code (plugin install — recommended):**
 ```bash
-/plugin marketplace add wan-huiyan/claude-statusline
-/plugin install claude-statusline@wan-huiyan-claude-statusline
+# Add the marketplace, then install the plugin
+claude plugin marketplace add wan-huiyan/claude-statusline
+claude plugin install claude-statusline@wan-huiyan-claude-statusline
 ```
 
 **Claude Code (git clone):**
 ```bash
 git clone https://github.com/wan-huiyan/claude-statusline.git ~/.claude/skills/claude-statusline
+```
+
+**Cursor** (2.4+):
+```bash
+# Per-project rule (most reliable)
+mkdir -p .cursor/rules
+# Copy plugins/claude-statusline/SKILL.md content into .cursor/rules/claude-statusline.mdc with alwaysApply: true
+
+# Or via npx skills CLI
+npx skills add wan-huiyan/claude-statusline --global
 ```
 
 ## What You Get
